@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Prime Number Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #fff;
+    }
+
+    .container {
+      border: 1px solid #ccc;
+      padding: 30px;
+      width: 400px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    table {
+      width: 100%;
+    }
+
+    td {
+      padding: 10px;
+    }
+
+    input[type="number"], textarea {
+      width: 100%;
+      padding: 8px;
+      font-size: 16px;
+    }
+
+    textarea {
+      resize: vertical;
+      height: 100px;
+    }
+
+    button {
+      margin-top: 10px;
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      background-color: #f2f2f2;
+      border: 1px solid #ccc;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #ddd;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Prime Number Generator</h2>
+    <table>
+      <tr>
+        <td>Start</td>
+        <td><input type="number" id="start" placeholder="Enter start value"></td>
+      </tr>
+      <tr>
+        <td>End</td>
+        <td><input type="number" id="end" placeholder="Enter end value"></td>
+      </tr>
+      <tr>
+        <td>Prime Number</td>
+        <td><textarea id="result" readonly></textarea></td>
+      </tr>
+      <tr>
+        <td colspan="2"><button onclick="generatePrimes()">Generate</button></td>
+      </tr>
+    </table>
+  </div>
+
+  <script>
+    function isPrime(n) {
+      if (n < 2) return false;
+      for (let i = 2; i <= Math.sqrt(n); i++) {
+        if (n % i === 0) return false;
+      }
+      return true;
+    }
+
+    function generatePrimes() {
+      const start = parseInt(document.getElementById("start").value);
+      const end = parseInt(document.getElementById("end").value);
+      const resultArea = document.getElementById("result");
+      let primes = [];
+
+      if (isNaN(start) || isNaN(end) || start > end) {
+        resultArea.value = "Please enter a valid range.";
+        return;
+      }
+
+      for (let i = start; i <= end; i++) {
+        if (isPrime(i)) {
+          primes.push(i);
+        }
+      }
+
+      resultArea.value = primes.length > 0 ? primes.join(", ") : "No prime numbers found.";
+    }
+  </script>
+
+</body>
+</html>

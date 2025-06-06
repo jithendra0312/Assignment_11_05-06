@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Instagram Login</title>
+  <style>
+    body {
+      background-color: #fafafa;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .login-box {
+      background-color: white;
+      border: 1px solid #dbdbdb;
+      padding: 40px;
+      width: 300px;
+      text-align: center;
+    }
+
+    .login-box h1 {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-style: italic;
+      font-size: 32px;
+      margin-bottom: 20px;
+    }
+
+    input[type="text"], input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin: 6px 0;
+      border: 1px solid #dbdbdb;
+      border-radius: 3px;
+      background-color: #fafafa;
+    }
+
+    button {
+      width: 100%;
+      background-color: #3897f0;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 3px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .options {
+      margin-top: 10px;
+      font-size: 12px;
+      color: #555;
+    }
+
+    .options input {
+      margin-right: 5px;
+    }
+
+    .forgot {
+      color: #00376b;
+      font-size: 12px;
+      margin-top: 10px;
+      display: block;
+      text-decoration: none;
+    }
+
+    .signup {
+      margin-top: 20px;
+      font-size: 14px;
+    }
+
+    .error {
+      color: red;
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-box">
+    <h1>Instagram</h1>
+    <input type="text" id="username" placeholder="Username" required>
+    <input type="password" id="password" placeholder="Password" required>
+    <p id="errorMsg" class="error"></p>
+    <button onclick="validateLogin()">Log in</button>
+    <div class="options">
+      <label><input type="checkbox"> Remember me</label>
+    </div>
+    <a class="forgot" href="#">Forgot password?</a>
+    <div class="signup">
+      Don't have an account? <a href="#">Sign up</a>
+    </div>
+  </div>
+
+  <script>
+    function validateLogin() {
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value.trim();
+      const error = document.getElementById('errorMsg');
+
+      if (username === '' || password === '') {
+        error.textContent = 'Both fields are required.';
+      } else if (username.length < 3 || password.length < 5) {
+        error.textContent = 'Username or password too short.';
+      } else {
+        error.textContent = '';
+        alert('Login successful (demo)');
+      }
+    }
+  </script>
+
+</body>
+</html>

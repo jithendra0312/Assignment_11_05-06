@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mobile Number Validation</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fdfdfd;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+    }
+
+    h2 {
+      margin-bottom: 30px;
+      color: #222;
+    }
+
+    label {
+      font-size: 18px;
+      margin-right: 10px;
+    }
+
+    input[type="text"] {
+      padding: 8px 12px;
+      font-size: 16px;
+      border: 2px solid #ccc;
+      border-radius: 5px;
+      width: 200px;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+      border: 1px solid #333;
+      border-radius: 5px;
+      background-color: #fff;
+      cursor: pointer;
+    }
+
+    .message {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    .valid {
+      color: green;
+    }
+
+    .invalid {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Mobile Number Validation using JavaScript</h2>
+
+  <div>
+    <label for="mobile">Enter Mobile Number</label>
+    <input type="text" id="mobile" placeholder="Enter 10 Digit Mobile Num">
+  </div>
+
+  <button onclick="validateMobile()">Validate</button>
+
+  <div id="message" class="message"></div>
+
+  <script>
+    function validateMobile() {
+      const mobile = document.getElementById("mobile").value.trim();
+      const message = document.getElementById("message");
+      const regex = /^[6-9]\d{9}$/;
+
+      if (regex.test(mobile)) {
+        message.textContent = "Valid Mobile Number!";
+        message.className = "message valid";
+      } else {
+        message.textContent = "Invalid Mobile Number!";
+        message.className = "message invalid";
+      }
+    }
+  </script>
+
+</body>
+</html>
