@@ -111,13 +111,16 @@
 
     function calculateAge() {
       const dobInput = document.getElementById("dob").value;
-      const dob = new Date(dobInput);
-      const today = new Date();
-
       if (!dobInput) {
         alert("Please select your date of birth.");
         return;
       }
+
+      // Set DOB and Today to local midnight
+      const dob = new Date(dobInput);
+      const today = new Date();
+      dob.setHours(0, 0, 0, 0);
+      today.setHours(0, 0, 0, 0);
 
       if (dob > today) {
         alert("Date of birth cannot be in the future!");
@@ -130,7 +133,9 @@
 
       if (days < 0) {
         months--;
-        days += new Date(today.getFullYear(), today.getMonth(), 0).getDate();
+        // Get number of days in previous month
+        const prevMonth = new Date(today.getFullYear(), today.getMonth(), 0);
+        days += prevMonth.getDate();
       }
 
       if (months < 0) {
