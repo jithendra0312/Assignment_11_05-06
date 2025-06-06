@@ -106,9 +106,23 @@
   </div>
 
   <script>
+    // Set max date to today
+    document.getElementById("dob").max = new Date().toISOString().split("T")[0];
+
     function calculateAge() {
-      const dob = new Date(document.getElementById("dob").value);
+      const dobInput = document.getElementById("dob").value;
+      const dob = new Date(dobInput);
       const today = new Date();
+
+      if (!dobInput) {
+        alert("Please select your date of birth.");
+        return;
+      }
+
+      if (dob > today) {
+        alert("Date of birth cannot be in the future!");
+        return;
+      }
 
       let years = today.getFullYear() - dob.getFullYear();
       let months = today.getMonth() - dob.getMonth();
